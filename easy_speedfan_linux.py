@@ -73,14 +73,12 @@ if __name__ == "__main__":
     config_file = Env.config_file
     sensors_cache_ttl = Env.sensors_cache_ttl
     sensors_path = Env.sensors_path
-    loop_sleep = Env.loop_sleep
     try:
         from mininterface import run
         m = run(Env, title="Easy SpeedFan")
         config_file = m.env.config_file
         sensors_cache_ttl = m.env.sensors_cache_ttl
         sensors_path = m.env.sensors_path
-        loop_sleep = m.env.loop_sleep
 
         print("mininterface found, use --help to see all options", file=sys.stderr)
     except ImportError:
@@ -99,6 +97,5 @@ if __name__ == "__main__":
     print("Config file: %s" % config_file, file=sys.stderr)
     print("Sensors cache ttl: %s" % sensors_cache_ttl, file=sys.stderr)
     print("Sensors (binary) path: %s" % sensors_path, file=sys.stderr)
-    print("Loop sleep: %s" % loop_sleep, file=sys.stderr)
 
-    main(config_file, sensors_cache_ttl, sensors_path, loop_sleep)
+    main(config_file, sensors_cache_ttl, sensors_path)
