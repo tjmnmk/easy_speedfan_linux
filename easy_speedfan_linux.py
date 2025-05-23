@@ -1,6 +1,5 @@
 from dataclasses import dataclass
-from mininterface import run
-import time
+import sys
 
 import sensors
 import pwm
@@ -44,9 +43,6 @@ class Env:
     """ The time (in sec) to sleep between loops """
 
 def main(config_file, sensors_cache_ttl, sensors_path, loop_sleep):
-    # check if the config file exists
-    if config_file is None:
-        raise ValueError("Config file is required")
     # check if config file is valid
     if not config_file.endswith(".py"):
         raise ValueError("Config file must be a python script")
@@ -73,10 +69,39 @@ def main(config_file, sensors_cache_ttl, sensors_path, loop_sleep):
     vars.sensors_path = sensors_path
     
     # run the config function
+    print("Starting config loop", file=sys.stderr)
     config.config_loop(EasySpeedFan())
 
-
 if __name__ == "__main__":
-    m = run(Env, title="My application")
+    config_file = Env.config_file
+    sensors_cache_ttl = Env.sensors_cache_ttl
+    sensors_path = Env.sensors_path
+    loop_sleep = Env.loop_sleep
+    try:
+        from mininterface import run
+        m = run(Env, title="Easy SpeedFan")
+        config_file = m.env.config_file
+        sensors_cache_ttl = m.env.sensors_cache_ttl
+        sensors_path = m.env.sensors_path
+        loop_sleep = m.env.loop_sleep
 
-    main(m.env.config_file, m.env.sensors_cache_ttl, m.env.sensors_path, m.env.loop_sleep)
+        print("mininterface found, use --help to see all options", file=sys.stderr)
+    except ImportError:
+        m = Env()
+
+        print("mininterface not found, running with default arguments", file=sys.stderr)
+        print("You can install it with: pip install mininterface", file=sys.stderr)
+        print("You can specify the config file by simple passing it as an first argument", file=sys.stderr)
+        # load the config file from args
+        if len(sys.argv) > 1:
+            config_file = sys.argv[1]
+            print("Config file: %s" % config_file, file=sys.stderr)
+        else:
+            print("No config file specified, using default: %s" % config_file, file=sys.stderr)
+
+    print("Config file: %s" % config_file, file=sys.stderr)
+    print("Sensors cache ttl: %s" % sensors_cache_ttl, file=sys.stderr)
+    print("Sensors (binary) path: %s" % sensors_path, file=sys.stderr)
+    print("Loop sleep: %s" % loop_sleep, file=sys.stderr)
+
+    main(config_file, sensors_cache_ttl, sensors_path, loop_sleep)
