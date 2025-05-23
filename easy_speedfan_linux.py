@@ -39,10 +39,7 @@ class Env:
     sensors_path: str = "sensors"
     """ The path to the sensors command """
 
-    loop_sleep: int = 1
-    """ The time (in sec) to sleep between loops """
-
-def main(config_file, sensors_cache_ttl, sensors_path, loop_sleep):
+def main(config_file, sensors_cache_ttl, sensors_path):
     # check if config file is valid
     if not config_file.endswith(".py"):
         raise ValueError("Config file must be a python script")
