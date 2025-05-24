@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import sys
 from loguru import logger
+import importlib.util
 
 import sensors
 import pwm
@@ -44,6 +45,12 @@ class Env:
     sensors_path: str = "sensors"
     """ The path to the sensors command """
 
+def load_module_from_file(module_name, file_path):
+    spec = importlib.util.spec_from_file_location(module_name, file_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
 def runner(config_file, sensors_cache_ttl, sensors_path):
     assert isinstance(config_file, str)
     assert isinstance(sensors_cache_ttl, int)
@@ -63,7 +70,7 @@ def runner(config_file, sensors_cache_ttl, sensors_path):
     
     # try to import the config file
     try:
-        config = __import__(config_file[:-3], globals(), locals(), ["config_loop"], 0)
+        config = load_module_from_file("config", config_file)
     except ImportError:
         logger.error(f"Config file {config_file} is not a valid python script")
         # raise error, logger will catch it and print it
