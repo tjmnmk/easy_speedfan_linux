@@ -178,8 +178,10 @@ archlinux/pkg/
 archlinux/src/
 archlinux/*.tar.gz
 archlinux/*.pkg.tar.zst
+archlinux/easy_speedfan_linux/
 
 archlinux_devel/pkg/
 archlinux_devel/src/
 archlinux_devel/*.tar.gz
 archlinux_devel/*.pkg.tar.zst
+archlinux_devel/easy_speedfan_linux/
