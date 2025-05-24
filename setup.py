@@ -7,7 +7,7 @@ setup(
     author="Adam Bambuch",
     author_email="adam.bambuch2@gmail.com",
     url="https://github.com/tjmnmk/easy_speedfan_linux",
-    license="Beerware",
+    license="Beerware 42.666",
     py_modules=[
         "easy_speedfan_linux",
         "config",
@@ -36,7 +36,6 @@ setup(
     python_requires=">=3.7",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Beerware License",
         "Operating System :: POSIX :: Linux",
     ],
 )
