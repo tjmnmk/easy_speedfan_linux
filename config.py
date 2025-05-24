@@ -1,5 +1,4 @@
 import time
-import traceback
 import sys
 
 def config_loop(easy_speedfan):
@@ -37,7 +36,7 @@ def config_loop(easy_speedfan):
             easy_speedfan.logger.info(f"PWM value: {pwm_value}", file=sys.stderr)
             # set the previous pwm value
             previous_pwm_value = pwm_value
-            
+
             # sleep for the loop sleep time
             time.sleep(1)
     finally:
