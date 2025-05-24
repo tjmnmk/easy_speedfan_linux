@@ -7,6 +7,7 @@ url="https://github.com/tjmnmk/easy_speedfan_linux"
 license=('Beerware')
 depends=('python' 'python-cachetools' 'python-loguru' 'lm_sensors')
 makedepends=('python-build' 'python-installer' 'python-setuptools')
+backup=('etc/easy_speedfan_linux/config.py')
 source=("$pkgname-$pkgver.tar.gz")
 
 # Use the corresponding git tag for the source archive
@@ -21,8 +22,8 @@ build() {
 package() {
   cd "$srcdir/$pkgname-$pkgver"
   python -m installer --destdir="$pkgdir" dist/*.whl
-  # Copy default config.py to /etc/easy_speedfan_linux/
-  install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py"
+  # Copy default config.py as .pacnew to /etc/easy_speedfan_linux/
+  install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py.pacnew"
   # Install systemd service file
   install -Dm644 "$srcdir/../easy_speedfan_linux.service" "$pkgdir/usr/lib/systemd/system/easy_speedfan_linux.service"
 }
