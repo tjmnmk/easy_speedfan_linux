@@ -1,0 +1,31 @@
+pkgname=easy_speedfan_linux
+gitname=easy_speedfan_linux
+giturl="https://github.com/tjmnmk/easy_speedfan_linux.git"
+pkgver=1.0.1
+pkgrel=1
+pkgdesc="Automatic fan speed control for Linux based on CPU/GPU temperature sensors."
+arch=('any')
+url="$giturl"
+license=('Beerware')
+depends=('python' 'python-cachetools' 'python-loguru' 'lm_sensors')
+makedepends=('python-setuptools' 'git')
+source=("git+$giturl")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/$gitname"
+  # Use latest git tag or commit count
+  git describe --tags --abbrev=0 | sed 's/^v//'
+}
+
+build() {
+  cd "$srcdir/$gitname"
+  python setup.py build
+}
+
+package() {
+  cd "$srcdir/$gitname"
+  python setup.py install --root="$pkgdir" --optimize=1
+  # Copy default config.py to /etc/easy_speedfan_linux/
+  install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py"
+}
