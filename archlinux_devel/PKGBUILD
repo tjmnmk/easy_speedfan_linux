@@ -1,7 +1,7 @@
 pkgname=easy_speedfan_linux
 gitname=easy_speedfan_linux
 giturl="https://github.com/tjmnmk/easy_speedfan_linux.git"
-pkgver=1.0.1
+pkgver=1.0.2
 pkgrel=1
 pkgdesc="Automatic fan speed control for Linux based on CPU/GPU temperature sensors."
 arch=('any')
