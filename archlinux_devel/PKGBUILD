@@ -11,6 +11,7 @@ depends=('python' 'python-cachetools' 'python-loguru' 'lm_sensors')
 makedepends=('python-build' 'python-installer' 'python-setuptools' 'git')
 source=("git+$giturl")
 md5sums=('SKIP')
+backup=('etc/easy_speedfan_linux/config.py')
 
 pkgver() {
   cd "$srcdir/$gitname"
@@ -25,8 +26,7 @@ build() {
 package() {
   cd "$srcdir/$gitname"
   python -m installer --destdir="$pkgdir" dist/*.whl
-  # Copy default config.py as .pacnew to /etc/easy_speedfan_linux/
-  install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py.pacnew"
+  install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py"
   # Install systemd service file
   install -Dm644 "$srcdir/$gitname/easy_speedfan_linux.service" "$pkgdir/usr/lib/systemd/system/easy_speedfan_linux.service"
 }

@@ -22,8 +22,7 @@ build() {
 package() {
   cd "$srcdir/$pkgname-$pkgver"
   python -m installer --destdir="$pkgdir" dist/*.whl
-  # Copy default config.py as .pacnew to /etc/easy_speedfan_linux/
-  install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py.pacnew"
+  install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py"
   # Install systemd service file
   install -Dm644 "$srcdir/../easy_speedfan_linux.service" "$pkgdir/usr/lib/systemd/system/easy_speedfan_linux.service"
 }
