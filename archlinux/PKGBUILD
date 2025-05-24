@@ -22,6 +22,8 @@ build() {
 package() {
   cd "$srcdir/$pkgname-$pkgver"
   python setup.py install --root="$pkgdir" --optimize=1
+  # Copy default config.py to /etc/easy_speedfan_linux/
+  install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py"
 }
 
 sha256sums=('SKIP')
