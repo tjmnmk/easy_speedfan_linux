@@ -66,7 +66,6 @@ class PWM:
             raise ValueError(f"PWM control id {pwm_control_id} is not a valid integer")
         
         # set the pwm control id
-        print(self._pwm_enable_path, pwm_control_id)
         with open(self._pwm_enable_path, "w") as f:
             f.write(str(pwm_control_id))
         f.close()

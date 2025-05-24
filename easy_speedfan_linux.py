@@ -6,7 +6,6 @@ import sensors
 import pwm
 import vars
 import pwm_calc
-import common
 
 
 class EasySpeedFan:
