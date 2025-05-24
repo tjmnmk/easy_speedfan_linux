@@ -1,5 +1,3 @@
-import time
-
 import sensors_loader
 
 class TemperatureSensor:
