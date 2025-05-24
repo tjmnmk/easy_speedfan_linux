@@ -1,7 +1,7 @@
 import time
 import sys
 
-def config_loop_example(easy_speedfan):
+def config_loop(easy_speedfan):
     #### EDIT THIS FILE AND REMOVE THE NEXT LINE
     easy_speedfan.logger.error("Not configured, exiting"); sys.exit(1)
     ############################################
