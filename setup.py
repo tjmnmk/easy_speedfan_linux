@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="easy_speedfan_linux",
-    version="1.0.0",
+    version="1.0.1",
     description="Automatic fan speed control for Linux based on CPU/GPU temperature sensors.",
     author="Adam Bambuch",
     author_email="adam.bambuch2@gmail.com",

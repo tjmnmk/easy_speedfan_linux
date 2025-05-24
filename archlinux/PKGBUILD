@@ -1,5 +1,5 @@
 pkgname=easy_speedfan_linux
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=1
 pkgdesc="Automatic fan speed control for Linux based on CPU/GPU temperature sensors."
 arch=('any')
