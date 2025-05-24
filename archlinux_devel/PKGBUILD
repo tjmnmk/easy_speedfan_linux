@@ -1,3 +1,5 @@
+# Maintainer: Adam Bambuch <adam.bambuch2@gmail.com>
+
 pkgname=easy_speedfan_linux
 gitname=easy_speedfan_linux
 giturl="https://github.com/tjmnmk/easy_speedfan_linux.git"
