@@ -13,15 +13,15 @@ def config_loop(easy_speedfan):
     previous_pwm_value = 0
     try:
         while True:
-            print("Config loop", file=sys.stderr)
+            easy_speedfan.logger.info("Config loop")
 
             # get the temperature
             temp_cpu_value = temp_cpu.get_temperature()
             temp_gpu_value = temp_gpu.get_temperature()
 
             # print the temperature
-            print(f"CPU temp: {temp_cpu_value}", file=sys.stderr)
-            print(f"GPU temp: {temp_gpu_value}", file=sys.stderr)
+            easy_speedfan.logger.info(f"CPU temp: {temp_cpu_value}")
+            easy_speedfan.logger.info(f"GPU temp: {temp_gpu_value}")
 
             pwm_value = easy_speedfan.pwm_calc.linear_pwm(temp_cpu_value, 50, 80, 75, 255)
             if temp_gpu_value > 100 and pwm_value < 170:
@@ -34,22 +34,17 @@ def config_loop(easy_speedfan):
             pwm_cpu2.set_pwm_value(pwm_value)
 
             # print the pwm value
-            print(f"PWM value: {pwm_value}", file=sys.stderr)
+            easy_speedfan.logger.info(f"PWM value: {pwm_value}", file=sys.stderr)
             # set the previous pwm value
             previous_pwm_value = pwm_value
+            
             # sleep for the loop sleep time
-
             time.sleep(1)
-
-    except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
-        # print the stack trace
-        traceback.print_exc(file=sys.stderr)
-
     finally:
-        print("Error occurred, disabling fan control", file=sys.stderr)
+        easy_speedfan.logger.error("Error occurred, disabling fan control", file=sys.stderr)
         pwm_cpu2.disable_fan_control()
-        print("Fan control disabled", file=sys.stderr)
+        easy_speedfan.logger.error("Fan control disabled", file=sys.stderr)
+        # easy_speedfan_linux will catch the error and print it
 
         
         
