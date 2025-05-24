@@ -1,7 +1,11 @@
 import time
 import sys
 
-def config_loop(easy_speedfan):
+def config_loop_example(easy_speedfan):
+    #### EDIT THIS FILE AND REMOVE THE NEXT LINE
+    easy_speedfan.logger.error("Not configured, exiting"); sys.exit(1)
+    ############################################
+
     temp_cpu = easy_speedfan.sensors.TemperatureSensor("coretemp-isa-0000", "Package id 0", "temp1_input")
     temp_gpu = easy_speedfan.sensors.TemperatureSensor("amdgpu-pci-0500", "junction", "temp2_input")
 
@@ -44,7 +48,6 @@ def config_loop(easy_speedfan):
         pwm_cpu2.disable_fan_control()
         easy_speedfan.logger.error("Fan control disabled", file=sys.stderr)
         # easy_speedfan_linux will catch the error and print it
-
         
         
 
