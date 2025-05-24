@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/easy_speedfan_linux
-Restart=on-failure
+Restart=always
 User=root
 StandardError=journal
 StandardOutput=journal
