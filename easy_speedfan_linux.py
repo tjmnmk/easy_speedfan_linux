@@ -63,7 +63,7 @@ def runner(config_file, sensors_cache_ttl, sensors_path):
     
     # try to import the config file
     try:
-        config = __import__(config_file[:-3])
+        config = __import__(config_file[:-3], globals(), locals(), ["config_loop"], 0)
     except ImportError:
         logger.error(f"Config file {config_file} is not a valid python script")
         # raise error, logger will catch it and print it
