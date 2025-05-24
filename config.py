@@ -3,7 +3,7 @@ import sys
 
 def config_loop(easy_speedfan):
     #### EDIT THIS FILE AND REMOVE THE NEXT LINE
-    easy_speedfan.logger.error("Not configured, exiting"); sys.exit(1)
+    easy_speedfan.logger.error("Not configured. please edit config.py and remove this line"); easy_speedfan.logger.error("Exiting"); sys.exit(1)
     ############################################
 
     temp_cpu = easy_speedfan.sensors.TemperatureSensor("coretemp-isa-0000", "Package id 0", "temp1_input")
