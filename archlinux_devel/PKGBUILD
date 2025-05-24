@@ -8,24 +8,23 @@ arch=('any')
 url="$giturl"
 license=('Beerware')
 depends=('python' 'python-cachetools' 'python-loguru' 'lm_sensors')
-makedepends=('python-setuptools' 'git')
+makedepends=('python-build' 'python-installer' 'python-setuptools' 'git')
 source=("git+$giturl")
 md5sums=('SKIP')
 
 pkgver() {
   cd "$srcdir/$gitname"
-  # Use latest git tag or commit count
   git describe --tags --abbrev=0 | sed 's/^v//'
 }
 
 build() {
   cd "$srcdir/$gitname"
-  python setup.py build
+  python -m build --wheel --no-isolation
 }
 
 package() {
   cd "$srcdir/$gitname"
-  python setup.py install --root="$pkgdir" --optimize=1
+  python -m installer --destdir="$pkgdir" dist/*.whl
   # Copy default config.py to /etc/easy_speedfan_linux/
   install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py"
 }
