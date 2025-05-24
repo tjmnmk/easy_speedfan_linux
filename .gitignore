@@ -172,3 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Arch Linux packaging/build artifacts
+archlinux/pkg/
+archlinux/src/
+archlinux/*.tar.gz
+archlinux/*.pkg.tar.zst
