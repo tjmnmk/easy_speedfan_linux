@@ -1,5 +1,5 @@
 pkgname=easy_speedfan_linux
-pkgver=1.0.1
+pkgver=1.0.2
 pkgrel=1
 pkgdesc="Automatic fan speed control for Linux based on CPU/GPU temperature sensors."
 arch=('any')
@@ -24,7 +24,7 @@ package() {
   python -m installer --destdir="$pkgdir" dist/*.whl
   install -Dm644 config.py "$pkgdir/etc/easy_speedfan_linux/config.py"
   # Install systemd service file
-  install -Dm644 "$srcdir/../easy_speedfan_linux.service" "$pkgdir/usr/lib/systemd/system/easy_speedfan_linux.service"
+  install -Dm644 easy_speedfan_linux.service "$pkgdir/usr/lib/systemd/system/easy_speedfan_linux.service"
 }
 
 sha256sums=('SKIP')
