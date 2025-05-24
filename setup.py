@@ -24,9 +24,8 @@ setup(
     ],
     data_files=[
         ("share/easy_speedfan_linux", ["pwm_calc.py", "pwm.py", "sensors.py", "sensors_loader.py", "vars.py", "requirements.txt", "config.py"]),
-        ("share/doc/easy_speedfan_linux", ["README.md", "config.py"]),
+        ("share/doc/easy_speedfan_linux", ["README.md", "config.py", "easy_speedfan_linux.service"]),
         ("share/licenses/easy_speedfan_linux", ["LICENSE"]),
-        ("lib/systemd/system", ["easy_speedfan_linux.service"])
     ],
     entry_points={
         "console_scripts": [

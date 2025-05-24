@@ -4,8 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python3 /opt/easy_speedfan_linux/easy_speedfan_linux.py
-WorkingDirectory=/opt/easy_speedfan_linux
+ExecStart=/usr/bin/easy_speedfan_linux
 Restart=on-failure
 User=root
 StandardError=journal
