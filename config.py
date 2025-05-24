@@ -13,7 +13,7 @@ def config_loop(easy_speedfan):
 
     pwm_cpu2.enable_fan_control()
 
-    previous_pwm_value = 0
+    previous_pwm_value = None
     try:
         while True:
             easy_speedfan.logger.info("Config loop")
@@ -29,6 +29,8 @@ def config_loop(easy_speedfan):
             pwm_value = easy_speedfan.pwm_calc.linear_pwm(temp_cpu_value, 50, 80, 75, 255)
             if temp_gpu_value > 100 and pwm_value < 170:
                 pwm_value = 170
+            if previous_pwm_value == None:
+                previous_pwm_value = pwm_value
 
             # smooth the pwm value
             pwm_value = easy_speedfan.pwm_calc.smooth_pwm(previous_pwm_value, pwm_value)
