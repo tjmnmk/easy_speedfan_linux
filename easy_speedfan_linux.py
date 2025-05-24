@@ -35,7 +35,7 @@ class EasySpeedFan:
 class Env:
     """ A simple utility for setting fan speed. """
 
-    config_file: str = "config.py"
+    config_file: str = "/etc/easy_speedfan_linux/config.py"
     """ The config file to use """
 
     sensors_cache_ttl: int = 2
