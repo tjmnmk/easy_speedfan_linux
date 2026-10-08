@@ -28,10 +28,10 @@ def config_loop(easy_speedfan):
             easy_speedfan.logger.info(f"GPU temp: {temp_gpu_value}")
             easy_speedfan.logger.info(f"PECI Agent 0 temp: {temp_peci_agent_0_value}")
 
-            pwm_value = easy_speedfan.pwm_calc.linear_pwm(temp_cpu_value, 50, 80, 75, 255)
+            pwm_value = easy_speedfan.pwm_calc.linear_pwm(temp_cpu_value, 50, 72, 75, 255)
             if temp_gpu_value > 100 and pwm_value < 170:
                 pwm_value = 170
-            if temp_peci_agent_0_value > 92:
+            if temp_peci_agent_0_value > 91:
                 pwm_value = 255
             if previous_pwm_value == None:
                 previous_pwm_value = pwm_value
